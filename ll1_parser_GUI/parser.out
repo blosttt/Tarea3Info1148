@@ -1,0 +1,1088 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    READ
+    WRITE
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statement_list
+Rule 2     statement_list -> statement
+Rule 3     statement_list -> statement statement_list
+Rule 4     statement -> assignment
+Rule 5     statement -> if_statement
+Rule 6     statement -> do_loop
+Rule 7     assignment -> ID ASSIGN expression
+Rule 8     if_statement -> IF LPAREN expression RPAREN THEN statement_list ENDIF
+Rule 9     do_loop -> DO ID ASSIGN expression COMMA expression statement_list ENDDO
+Rule 10    expression -> expression PLUS term
+Rule 11    expression -> expression MINUS term
+Rule 12    expression -> expression EQUALS term
+Rule 13    expression -> expression NOTEQUALS term
+Rule 14    expression -> expression LESS term
+Rule 15    expression -> expression GREATER term
+Rule 16    expression -> expression LESSEQUAL term
+Rule 17    expression -> expression GREATEREQUAL term
+Rule 18    expression -> term
+Rule 19    term -> term TIMES factor
+Rule 20    term -> term DIVIDE factor
+Rule 21    term -> factor
+Rule 22    factor -> ID
+Rule 23    factor -> NUMBER
+Rule 24    factor -> LPAREN expression RPAREN
+
+Terminals, with rules where they appear
+
+ASSIGN               : 7 9
+COMMA                : 9
+DIVIDE               : 20
+DO                   : 9
+ENDDO                : 9
+ENDIF                : 8
+EQUALS               : 12
+GREATER              : 15
+GREATEREQUAL         : 17
+ID                   : 7 9 22
+IF                   : 8
+LESS                 : 14
+LESSEQUAL            : 16
+LPAREN               : 8 24
+MINUS                : 11
+NOTEQUALS            : 13
+NUMBER               : 23
+PLUS                 : 10
+READ                 : 
+RPAREN               : 8 24
+THEN                 : 8
+TIMES                : 19
+WRITE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment           : 4
+do_loop              : 6
+expression           : 7 8 9 9 10 11 12 13 14 15 16 17 24
+factor               : 19 20 21
+if_statement         : 5
+program              : 0
+statement            : 2 3
+statement_list       : 1 3 8 9
+term                 : 10 11 12 13 14 15 16 17 18 19 20
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statement_list
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement statement_list
+    (4) statement -> . assignment
+    (5) statement -> . if_statement
+    (6) statement -> . do_loop
+    (7) assignment -> . ID ASSIGN expression
+    (8) if_statement -> . IF LPAREN expression RPAREN THEN statement_list ENDIF
+    (9) do_loop -> . DO ID ASSIGN expression COMMA expression statement_list ENDDO
+
+    ID              shift and go to state 7
+    IF              shift and go to state 8
+    DO              shift and go to state 9
+
+    program                        shift and go to state 1
+    statement_list                 shift and go to state 2
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    if_statement                   shift and go to state 5
+    do_loop                        shift and go to state 6
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statement_list .
+
+    $end            reduce using rule 1 (program -> statement_list .)
+
+
+state 3
+
+    (2) statement_list -> statement .
+    (3) statement_list -> statement . statement_list
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement statement_list
+    (4) statement -> . assignment
+    (5) statement -> . if_statement
+    (6) statement -> . do_loop
+    (7) assignment -> . ID ASSIGN expression
+    (8) if_statement -> . IF LPAREN expression RPAREN THEN statement_list ENDIF
+    (9) do_loop -> . DO ID ASSIGN expression COMMA expression statement_list ENDDO
+
+    $end            reduce using rule 2 (statement_list -> statement .)
+    ENDIF           reduce using rule 2 (statement_list -> statement .)
+    ENDDO           reduce using rule 2 (statement_list -> statement .)
+    ID              shift and go to state 7
+    IF              shift and go to state 8
+    DO              shift and go to state 9
+
+    statement                      shift and go to state 3
+    statement_list                 shift and go to state 10
+    assignment                     shift and go to state 4
+    if_statement                   shift and go to state 5
+    do_loop                        shift and go to state 6
+
+state 4
+
+    (4) statement -> assignment .
+
+    ID              reduce using rule 4 (statement -> assignment .)
+    IF              reduce using rule 4 (statement -> assignment .)
+    DO              reduce using rule 4 (statement -> assignment .)
+    $end            reduce using rule 4 (statement -> assignment .)
+    ENDIF           reduce using rule 4 (statement -> assignment .)
+    ENDDO           reduce using rule 4 (statement -> assignment .)
+
+
+state 5
+
+    (5) statement -> if_statement .
+
+    ID              reduce using rule 5 (statement -> if_statement .)
+    IF              reduce using rule 5 (statement -> if_statement .)
+    DO              reduce using rule 5 (statement -> if_statement .)
+    $end            reduce using rule 5 (statement -> if_statement .)
+    ENDIF           reduce using rule 5 (statement -> if_statement .)
+    ENDDO           reduce using rule 5 (statement -> if_statement .)
+
+
+state 6
+
+    (6) statement -> do_loop .
+
+    ID              reduce using rule 6 (statement -> do_loop .)
+    IF              reduce using rule 6 (statement -> do_loop .)
+    DO              reduce using rule 6 (statement -> do_loop .)
+    $end            reduce using rule 6 (statement -> do_loop .)
+    ENDIF           reduce using rule 6 (statement -> do_loop .)
+    ENDDO           reduce using rule 6 (statement -> do_loop .)
+
+
+state 7
+
+    (7) assignment -> ID . ASSIGN expression
+
+    ASSIGN          shift and go to state 11
+
+
+state 8
+
+    (8) if_statement -> IF . LPAREN expression RPAREN THEN statement_list ENDIF
+
+    LPAREN          shift and go to state 12
+
+
+state 9
+
+    (9) do_loop -> DO . ID ASSIGN expression COMMA expression statement_list ENDDO
+
+    ID              shift and go to state 13
+
+
+state 10
+
+    (3) statement_list -> statement statement_list .
+
+    $end            reduce using rule 3 (statement_list -> statement statement_list .)
+    ENDIF           reduce using rule 3 (statement_list -> statement statement_list .)
+    ENDDO           reduce using rule 3 (statement_list -> statement statement_list .)
+
+
+state 11
+
+    (7) assignment -> ID ASSIGN . expression
+    (10) expression -> . expression PLUS term
+    (11) expression -> . expression MINUS term
+    (12) expression -> . expression EQUALS term
+    (13) expression -> . expression NOTEQUALS term
+    (14) expression -> . expression LESS term
+    (15) expression -> . expression GREATER term
+    (16) expression -> . expression LESSEQUAL term
+    (17) expression -> . expression GREATEREQUAL term
+    (18) expression -> . term
+    (19) term -> . term TIMES factor
+    (20) term -> . term DIVIDE factor
+    (21) term -> . factor
+    (22) factor -> . ID
+    (23) factor -> . NUMBER
+    (24) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 14
+    NUMBER          shift and go to state 18
+    LPAREN          shift and go to state 19
+
+    expression                     shift and go to state 15
+    term                           shift and go to state 16
+    factor                         shift and go to state 17
+
+state 12
+
+    (8) if_statement -> IF LPAREN . expression RPAREN THEN statement_list ENDIF
+    (10) expression -> . expression PLUS term
+    (11) expression -> . expression MINUS term
+    (12) expression -> . expression EQUALS term
+    (13) expression -> . expression NOTEQUALS term
+    (14) expression -> . expression LESS term
+    (15) expression -> . expression GREATER term
+    (16) expression -> . expression LESSEQUAL term
+    (17) expression -> . expression GREATEREQUAL term
+    (18) expression -> . term
+    (19) term -> . term TIMES factor
+    (20) term -> . term DIVIDE factor
+    (21) term -> . factor
+    (22) factor -> . ID
+    (23) factor -> . NUMBER
+    (24) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 14
+    NUMBER          shift and go to state 18
+    LPAREN          shift and go to state 19
+
+    expression                     shift and go to state 20
+    term                           shift and go to state 16
+    factor                         shift and go to state 17
+
+state 13
+
+    (9) do_loop -> DO ID . ASSIGN expression COMMA expression statement_list ENDDO
+
+    ASSIGN          shift and go to state 21
+
+
+state 14
+
+    (22) factor -> ID .
+
+    TIMES           reduce using rule 22 (factor -> ID .)
+    DIVIDE          reduce using rule 22 (factor -> ID .)
+    PLUS            reduce using rule 22 (factor -> ID .)
+    MINUS           reduce using rule 22 (factor -> ID .)
+    EQUALS          reduce using rule 22 (factor -> ID .)
+    NOTEQUALS       reduce using rule 22 (factor -> ID .)
+    LESS            reduce using rule 22 (factor -> ID .)
+    GREATER         reduce using rule 22 (factor -> ID .)
+    LESSEQUAL       reduce using rule 22 (factor -> ID .)
+    GREATEREQUAL    reduce using rule 22 (factor -> ID .)
+    ID              reduce using rule 22 (factor -> ID .)
+    IF              reduce using rule 22 (factor -> ID .)
+    DO              reduce using rule 22 (factor -> ID .)
+    $end            reduce using rule 22 (factor -> ID .)
+    ENDIF           reduce using rule 22 (factor -> ID .)
+    ENDDO           reduce using rule 22 (factor -> ID .)
+    RPAREN          reduce using rule 22 (factor -> ID .)
+    COMMA           reduce using rule 22 (factor -> ID .)
+
+
+state 15
+
+    (7) assignment -> ID ASSIGN expression .
+    (10) expression -> expression . PLUS term
+    (11) expression -> expression . MINUS term
+    (12) expression -> expression . EQUALS term
+    (13) expression -> expression . NOTEQUALS term
+    (14) expression -> expression . LESS term
+    (15) expression -> expression . GREATER term
+    (16) expression -> expression . LESSEQUAL term
+    (17) expression -> expression . GREATEREQUAL term
+
+    ID              reduce using rule 7 (assignment -> ID ASSIGN expression .)
+    IF              reduce using rule 7 (assignment -> ID ASSIGN expression .)
+    DO              reduce using rule 7 (assignment -> ID ASSIGN expression .)
+    $end            reduce using rule 7 (assignment -> ID ASSIGN expression .)
+    ENDIF           reduce using rule 7 (assignment -> ID ASSIGN expression .)
+    ENDDO           reduce using rule 7 (assignment -> ID ASSIGN expression .)
+    PLUS            shift and go to state 22
+    MINUS           shift and go to state 23
+    EQUALS          shift and go to state 24
+    NOTEQUALS       shift and go to state 25
+    LESS            shift and go to state 26
+    GREATER         shift and go to state 27
+    LESSEQUAL       shift and go to state 28
+    GREATEREQUAL    shift and go to state 29
+
+
+state 16
+
+    (18) expression -> term .
+    (19) term -> term . TIMES factor
+    (20) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 18 (expression -> term .)
+    MINUS           reduce using rule 18 (expression -> term .)
+    EQUALS          reduce using rule 18 (expression -> term .)
+    NOTEQUALS       reduce using rule 18 (expression -> term .)
+    LESS            reduce using rule 18 (expression -> term .)
+    GREATER         reduce using rule 18 (expression -> term .)
+    LESSEQUAL       reduce using rule 18 (expression -> term .)
+    GREATEREQUAL    reduce using rule 18 (expression -> term .)
+    ID              reduce using rule 18 (expression -> term .)
+    IF              reduce using rule 18 (expression -> term .)
+    DO              reduce using rule 18 (expression -> term .)
+    $end            reduce using rule 18 (expression -> term .)
+    ENDIF           reduce using rule 18 (expression -> term .)
+    ENDDO           reduce using rule 18 (expression -> term .)
+    RPAREN          reduce using rule 18 (expression -> term .)
+    COMMA           reduce using rule 18 (expression -> term .)
+    TIMES           shift and go to state 30
+    DIVIDE          shift and go to state 31
+
+
+state 17
+
+    (21) term -> factor .
+
+    TIMES           reduce using rule 21 (term -> factor .)
+    DIVIDE          reduce using rule 21 (term -> factor .)
+    PLUS            reduce using rule 21 (term -> factor .)
+    MINUS           reduce using rule 21 (term -> factor .)
+    EQUALS          reduce using rule 21 (term -> factor .)
+    NOTEQUALS       reduce using rule 21 (term -> factor .)
+    LESS            reduce using rule 21 (term -> factor .)
+    GREATER         reduce using rule 21 (term -> factor .)
+    LESSEQUAL       reduce using rule 21 (term -> factor .)
+    GREATEREQUAL    reduce using rule 21 (term -> factor .)
+    ID              reduce using rule 21 (term -> factor .)
+    IF              reduce using rule 21 (term -> factor .)
+    DO              reduce using rule 21 (term -> factor .)
+    $end            reduce using rule 21 (term -> factor .)
+    ENDIF           reduce using rule 21 (term -> factor .)
+    ENDDO           reduce using rule 21 (term -> factor .)
+    RPAREN          reduce using rule 21 (term -> factor .)
+    COMMA           reduce using rule 21 (term -> factor .)
+
+
+state 18
+
+    (23) factor -> NUMBER .
+
+    TIMES           reduce using rule 23 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 23 (factor -> NUMBER .)
+    PLUS            reduce using rule 23 (factor -> NUMBER .)
+    MINUS           reduce using rule 23 (factor -> NUMBER .)
+    EQUALS          reduce using rule 23 (factor -> NUMBER .)
+    NOTEQUALS       reduce using rule 23 (factor -> NUMBER .)
+    LESS            reduce using rule 23 (factor -> NUMBER .)
+    GREATER         reduce using rule 23 (factor -> NUMBER .)
+    LESSEQUAL       reduce using rule 23 (factor -> NUMBER .)
+    GREATEREQUAL    reduce using rule 23 (factor -> NUMBER .)
+    ID              reduce using rule 23 (factor -> NUMBER .)
+    IF              reduce using rule 23 (factor -> NUMBER .)
+    DO              reduce using rule 23 (factor -> NUMBER .)
+    $end            reduce using rule 23 (factor -> NUMBER .)
+    ENDIF           reduce using rule 23 (factor -> NUMBER .)
+    ENDDO           reduce using rule 23 (factor -> NUMBER .)
+    RPAREN          reduce using rule 23 (factor -> NUMBER .)
+    COMMA           reduce using rule 23 (factor -> NUMBER .)
+
+
+state 19
+
+    (24) factor -> LPAREN . expression RPAREN
+    (10) expression -> . expression PLUS term
+    (11) expression -> . expression MINUS term
+    (12) expression -> . expression EQUALS term
+    (13) expression -> . expression NOTEQUALS term
+    (14) expression -> . expression LESS term
+    (15) expression -> . expression GREATER term
+    (16) expression -> . expression LESSEQUAL term
+    (17) expression -> . expression GREATEREQUAL term
+    (18) expression -> . term
+    (19) term -> . term TIMES factor
+    (20) term -> . term DIVIDE factor
+    (21) term -> . factor
+    (22) factor -> . ID
+    (23) factor -> . NUMBER
+    (24) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 14
+    NUMBER          shift and go to state 18
+    LPAREN          shift and go to state 19
+
+    expression                     shift and go to state 32
+    term                           shift and go to state 16
+    factor                         shift and go to state 17
+
+state 20
+
+    (8) if_statement -> IF LPAREN expression . RPAREN THEN statement_list ENDIF
+    (10) expression -> expression . PLUS term
+    (11) expression -> expression . MINUS term
+    (12) expression -> expression . EQUALS term
+    (13) expression -> expression . NOTEQUALS term
+    (14) expression -> expression . LESS term
+    (15) expression -> expression . GREATER term
+    (16) expression -> expression . LESSEQUAL term
+    (17) expression -> expression . GREATEREQUAL term
+
+    RPAREN          shift and go to state 33
+    PLUS            shift and go to state 22
+    MINUS           shift and go to state 23
+    EQUALS          shift and go to state 24
+    NOTEQUALS       shift and go to state 25
+    LESS            shift and go to state 26
+    GREATER         shift and go to state 27
+    LESSEQUAL       shift and go to state 28
+    GREATEREQUAL    shift and go to state 29
+
+
+state 21
+
+    (9) do_loop -> DO ID ASSIGN . expression COMMA expression statement_list ENDDO
+    (10) expression -> . expression PLUS term
+    (11) expression -> . expression MINUS term
+    (12) expression -> . expression EQUALS term
+    (13) expression -> . expression NOTEQUALS term
+    (14) expression -> . expression LESS term
+    (15) expression -> . expression GREATER term
+    (16) expression -> . expression LESSEQUAL term
+    (17) expression -> . expression GREATEREQUAL term
+    (18) expression -> . term
+    (19) term -> . term TIMES factor
+    (20) term -> . term DIVIDE factor
+    (21) term -> . factor
+    (22) factor -> . ID
+    (23) factor -> . NUMBER
+    (24) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 14
+    NUMBER          shift and go to state 18
+    LPAREN          shift and go to state 19
+
+    expression                     shift and go to state 34
+    term                           shift and go to state 16
+    factor                         shift and go to state 17
+
+state 22
+
+    (10) expression -> expression PLUS . term
+    (19) term -> . term TIMES factor
+    (20) term -> . term DIVIDE factor
+    (21) term -> . factor
+    (22) factor -> . ID
+    (23) factor -> . NUMBER
+    (24) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 14
+    NUMBER          shift and go to state 18
+    LPAREN          shift and go to state 19
+
+    term                           shift and go to state 35
+    factor                         shift and go to state 17
+
+state 23
+
+    (11) expression -> expression MINUS . term
+    (19) term -> . term TIMES factor
+    (20) term -> . term DIVIDE factor
+    (21) term -> . factor
+    (22) factor -> . ID
+    (23) factor -> . NUMBER
+    (24) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 14
+    NUMBER          shift and go to state 18
+    LPAREN          shift and go to state 19
+
+    term                           shift and go to state 36
+    factor                         shift and go to state 17
+
+state 24
+
+    (12) expression -> expression EQUALS . term
+    (19) term -> . term TIMES factor
+    (20) term -> . term DIVIDE factor
+    (21) term -> . factor
+    (22) factor -> . ID
+    (23) factor -> . NUMBER
+    (24) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 14
+    NUMBER          shift and go to state 18
+    LPAREN          shift and go to state 19
+
+    term                           shift and go to state 37
+    factor                         shift and go to state 17
+
+state 25
+
+    (13) expression -> expression NOTEQUALS . term
+    (19) term -> . term TIMES factor
+    (20) term -> . term DIVIDE factor
+    (21) term -> . factor
+    (22) factor -> . ID
+    (23) factor -> . NUMBER
+    (24) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 14
+    NUMBER          shift and go to state 18
+    LPAREN          shift and go to state 19
+
+    term                           shift and go to state 38
+    factor                         shift and go to state 17
+
+state 26
+
+    (14) expression -> expression LESS . term
+    (19) term -> . term TIMES factor
+    (20) term -> . term DIVIDE factor
+    (21) term -> . factor
+    (22) factor -> . ID
+    (23) factor -> . NUMBER
+    (24) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 14
+    NUMBER          shift and go to state 18
+    LPAREN          shift and go to state 19
+
+    term                           shift and go to state 39
+    factor                         shift and go to state 17
+
+state 27
+
+    (15) expression -> expression GREATER . term
+    (19) term -> . term TIMES factor
+    (20) term -> . term DIVIDE factor
+    (21) term -> . factor
+    (22) factor -> . ID
+    (23) factor -> . NUMBER
+    (24) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 14
+    NUMBER          shift and go to state 18
+    LPAREN          shift and go to state 19
+
+    term                           shift and go to state 40
+    factor                         shift and go to state 17
+
+state 28
+
+    (16) expression -> expression LESSEQUAL . term
+    (19) term -> . term TIMES factor
+    (20) term -> . term DIVIDE factor
+    (21) term -> . factor
+    (22) factor -> . ID
+    (23) factor -> . NUMBER
+    (24) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 14
+    NUMBER          shift and go to state 18
+    LPAREN          shift and go to state 19
+
+    term                           shift and go to state 41
+    factor                         shift and go to state 17
+
+state 29
+
+    (17) expression -> expression GREATEREQUAL . term
+    (19) term -> . term TIMES factor
+    (20) term -> . term DIVIDE factor
+    (21) term -> . factor
+    (22) factor -> . ID
+    (23) factor -> . NUMBER
+    (24) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 14
+    NUMBER          shift and go to state 18
+    LPAREN          shift and go to state 19
+
+    term                           shift and go to state 42
+    factor                         shift and go to state 17
+
+state 30
+
+    (19) term -> term TIMES . factor
+    (22) factor -> . ID
+    (23) factor -> . NUMBER
+    (24) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 14
+    NUMBER          shift and go to state 18
+    LPAREN          shift and go to state 19
+
+    factor                         shift and go to state 43
+
+state 31
+
+    (20) term -> term DIVIDE . factor
+    (22) factor -> . ID
+    (23) factor -> . NUMBER
+    (24) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 14
+    NUMBER          shift and go to state 18
+    LPAREN          shift and go to state 19
+
+    factor                         shift and go to state 44
+
+state 32
+
+    (24) factor -> LPAREN expression . RPAREN
+    (10) expression -> expression . PLUS term
+    (11) expression -> expression . MINUS term
+    (12) expression -> expression . EQUALS term
+    (13) expression -> expression . NOTEQUALS term
+    (14) expression -> expression . LESS term
+    (15) expression -> expression . GREATER term
+    (16) expression -> expression . LESSEQUAL term
+    (17) expression -> expression . GREATEREQUAL term
+
+    RPAREN          shift and go to state 45
+    PLUS            shift and go to state 22
+    MINUS           shift and go to state 23
+    EQUALS          shift and go to state 24
+    NOTEQUALS       shift and go to state 25
+    LESS            shift and go to state 26
+    GREATER         shift and go to state 27
+    LESSEQUAL       shift and go to state 28
+    GREATEREQUAL    shift and go to state 29
+
+
+state 33
+
+    (8) if_statement -> IF LPAREN expression RPAREN . THEN statement_list ENDIF
+
+    THEN            shift and go to state 46
+
+
+state 34
+
+    (9) do_loop -> DO ID ASSIGN expression . COMMA expression statement_list ENDDO
+    (10) expression -> expression . PLUS term
+    (11) expression -> expression . MINUS term
+    (12) expression -> expression . EQUALS term
+    (13) expression -> expression . NOTEQUALS term
+    (14) expression -> expression . LESS term
+    (15) expression -> expression . GREATER term
+    (16) expression -> expression . LESSEQUAL term
+    (17) expression -> expression . GREATEREQUAL term
+
+    COMMA           shift and go to state 47
+    PLUS            shift and go to state 22
+    MINUS           shift and go to state 23
+    EQUALS          shift and go to state 24
+    NOTEQUALS       shift and go to state 25
+    LESS            shift and go to state 26
+    GREATER         shift and go to state 27
+    LESSEQUAL       shift and go to state 28
+    GREATEREQUAL    shift and go to state 29
+
+
+state 35
+
+    (10) expression -> expression PLUS term .
+    (19) term -> term . TIMES factor
+    (20) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 10 (expression -> expression PLUS term .)
+    MINUS           reduce using rule 10 (expression -> expression PLUS term .)
+    EQUALS          reduce using rule 10 (expression -> expression PLUS term .)
+    NOTEQUALS       reduce using rule 10 (expression -> expression PLUS term .)
+    LESS            reduce using rule 10 (expression -> expression PLUS term .)
+    GREATER         reduce using rule 10 (expression -> expression PLUS term .)
+    LESSEQUAL       reduce using rule 10 (expression -> expression PLUS term .)
+    GREATEREQUAL    reduce using rule 10 (expression -> expression PLUS term .)
+    ID              reduce using rule 10 (expression -> expression PLUS term .)
+    IF              reduce using rule 10 (expression -> expression PLUS term .)
+    DO              reduce using rule 10 (expression -> expression PLUS term .)
+    $end            reduce using rule 10 (expression -> expression PLUS term .)
+    ENDIF           reduce using rule 10 (expression -> expression PLUS term .)
+    ENDDO           reduce using rule 10 (expression -> expression PLUS term .)
+    RPAREN          reduce using rule 10 (expression -> expression PLUS term .)
+    COMMA           reduce using rule 10 (expression -> expression PLUS term .)
+    TIMES           shift and go to state 30
+    DIVIDE          shift and go to state 31
+
+
+state 36
+
+    (11) expression -> expression MINUS term .
+    (19) term -> term . TIMES factor
+    (20) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 11 (expression -> expression MINUS term .)
+    MINUS           reduce using rule 11 (expression -> expression MINUS term .)
+    EQUALS          reduce using rule 11 (expression -> expression MINUS term .)
+    NOTEQUALS       reduce using rule 11 (expression -> expression MINUS term .)
+    LESS            reduce using rule 11 (expression -> expression MINUS term .)
+    GREATER         reduce using rule 11 (expression -> expression MINUS term .)
+    LESSEQUAL       reduce using rule 11 (expression -> expression MINUS term .)
+    GREATEREQUAL    reduce using rule 11 (expression -> expression MINUS term .)
+    ID              reduce using rule 11 (expression -> expression MINUS term .)
+    IF              reduce using rule 11 (expression -> expression MINUS term .)
+    DO              reduce using rule 11 (expression -> expression MINUS term .)
+    $end            reduce using rule 11 (expression -> expression MINUS term .)
+    ENDIF           reduce using rule 11 (expression -> expression MINUS term .)
+    ENDDO           reduce using rule 11 (expression -> expression MINUS term .)
+    RPAREN          reduce using rule 11 (expression -> expression MINUS term .)
+    COMMA           reduce using rule 11 (expression -> expression MINUS term .)
+    TIMES           shift and go to state 30
+    DIVIDE          shift and go to state 31
+
+
+state 37
+
+    (12) expression -> expression EQUALS term .
+    (19) term -> term . TIMES factor
+    (20) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 12 (expression -> expression EQUALS term .)
+    MINUS           reduce using rule 12 (expression -> expression EQUALS term .)
+    EQUALS          reduce using rule 12 (expression -> expression EQUALS term .)
+    NOTEQUALS       reduce using rule 12 (expression -> expression EQUALS term .)
+    LESS            reduce using rule 12 (expression -> expression EQUALS term .)
+    GREATER         reduce using rule 12 (expression -> expression EQUALS term .)
+    LESSEQUAL       reduce using rule 12 (expression -> expression EQUALS term .)
+    GREATEREQUAL    reduce using rule 12 (expression -> expression EQUALS term .)
+    ID              reduce using rule 12 (expression -> expression EQUALS term .)
+    IF              reduce using rule 12 (expression -> expression EQUALS term .)
+    DO              reduce using rule 12 (expression -> expression EQUALS term .)
+    $end            reduce using rule 12 (expression -> expression EQUALS term .)
+    ENDIF           reduce using rule 12 (expression -> expression EQUALS term .)
+    ENDDO           reduce using rule 12 (expression -> expression EQUALS term .)
+    RPAREN          reduce using rule 12 (expression -> expression EQUALS term .)
+    COMMA           reduce using rule 12 (expression -> expression EQUALS term .)
+    TIMES           shift and go to state 30
+    DIVIDE          shift and go to state 31
+
+
+state 38
+
+    (13) expression -> expression NOTEQUALS term .
+    (19) term -> term . TIMES factor
+    (20) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 13 (expression -> expression NOTEQUALS term .)
+    MINUS           reduce using rule 13 (expression -> expression NOTEQUALS term .)
+    EQUALS          reduce using rule 13 (expression -> expression NOTEQUALS term .)
+    NOTEQUALS       reduce using rule 13 (expression -> expression NOTEQUALS term .)
+    LESS            reduce using rule 13 (expression -> expression NOTEQUALS term .)
+    GREATER         reduce using rule 13 (expression -> expression NOTEQUALS term .)
+    LESSEQUAL       reduce using rule 13 (expression -> expression NOTEQUALS term .)
+    GREATEREQUAL    reduce using rule 13 (expression -> expression NOTEQUALS term .)
+    ID              reduce using rule 13 (expression -> expression NOTEQUALS term .)
+    IF              reduce using rule 13 (expression -> expression NOTEQUALS term .)
+    DO              reduce using rule 13 (expression -> expression NOTEQUALS term .)
+    $end            reduce using rule 13 (expression -> expression NOTEQUALS term .)
+    ENDIF           reduce using rule 13 (expression -> expression NOTEQUALS term .)
+    ENDDO           reduce using rule 13 (expression -> expression NOTEQUALS term .)
+    RPAREN          reduce using rule 13 (expression -> expression NOTEQUALS term .)
+    COMMA           reduce using rule 13 (expression -> expression NOTEQUALS term .)
+    TIMES           shift and go to state 30
+    DIVIDE          shift and go to state 31
+
+
+state 39
+
+    (14) expression -> expression LESS term .
+    (19) term -> term . TIMES factor
+    (20) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 14 (expression -> expression LESS term .)
+    MINUS           reduce using rule 14 (expression -> expression LESS term .)
+    EQUALS          reduce using rule 14 (expression -> expression LESS term .)
+    NOTEQUALS       reduce using rule 14 (expression -> expression LESS term .)
+    LESS            reduce using rule 14 (expression -> expression LESS term .)
+    GREATER         reduce using rule 14 (expression -> expression LESS term .)
+    LESSEQUAL       reduce using rule 14 (expression -> expression LESS term .)
+    GREATEREQUAL    reduce using rule 14 (expression -> expression LESS term .)
+    ID              reduce using rule 14 (expression -> expression LESS term .)
+    IF              reduce using rule 14 (expression -> expression LESS term .)
+    DO              reduce using rule 14 (expression -> expression LESS term .)
+    $end            reduce using rule 14 (expression -> expression LESS term .)
+    ENDIF           reduce using rule 14 (expression -> expression LESS term .)
+    ENDDO           reduce using rule 14 (expression -> expression LESS term .)
+    RPAREN          reduce using rule 14 (expression -> expression LESS term .)
+    COMMA           reduce using rule 14 (expression -> expression LESS term .)
+    TIMES           shift and go to state 30
+    DIVIDE          shift and go to state 31
+
+
+state 40
+
+    (15) expression -> expression GREATER term .
+    (19) term -> term . TIMES factor
+    (20) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 15 (expression -> expression GREATER term .)
+    MINUS           reduce using rule 15 (expression -> expression GREATER term .)
+    EQUALS          reduce using rule 15 (expression -> expression GREATER term .)
+    NOTEQUALS       reduce using rule 15 (expression -> expression GREATER term .)
+    LESS            reduce using rule 15 (expression -> expression GREATER term .)
+    GREATER         reduce using rule 15 (expression -> expression GREATER term .)
+    LESSEQUAL       reduce using rule 15 (expression -> expression GREATER term .)
+    GREATEREQUAL    reduce using rule 15 (expression -> expression GREATER term .)
+    ID              reduce using rule 15 (expression -> expression GREATER term .)
+    IF              reduce using rule 15 (expression -> expression GREATER term .)
+    DO              reduce using rule 15 (expression -> expression GREATER term .)
+    $end            reduce using rule 15 (expression -> expression GREATER term .)
+    ENDIF           reduce using rule 15 (expression -> expression GREATER term .)
+    ENDDO           reduce using rule 15 (expression -> expression GREATER term .)
+    RPAREN          reduce using rule 15 (expression -> expression GREATER term .)
+    COMMA           reduce using rule 15 (expression -> expression GREATER term .)
+    TIMES           shift and go to state 30
+    DIVIDE          shift and go to state 31
+
+
+state 41
+
+    (16) expression -> expression LESSEQUAL term .
+    (19) term -> term . TIMES factor
+    (20) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 16 (expression -> expression LESSEQUAL term .)
+    MINUS           reduce using rule 16 (expression -> expression LESSEQUAL term .)
+    EQUALS          reduce using rule 16 (expression -> expression LESSEQUAL term .)
+    NOTEQUALS       reduce using rule 16 (expression -> expression LESSEQUAL term .)
+    LESS            reduce using rule 16 (expression -> expression LESSEQUAL term .)
+    GREATER         reduce using rule 16 (expression -> expression LESSEQUAL term .)
+    LESSEQUAL       reduce using rule 16 (expression -> expression LESSEQUAL term .)
+    GREATEREQUAL    reduce using rule 16 (expression -> expression LESSEQUAL term .)
+    ID              reduce using rule 16 (expression -> expression LESSEQUAL term .)
+    IF              reduce using rule 16 (expression -> expression LESSEQUAL term .)
+    DO              reduce using rule 16 (expression -> expression LESSEQUAL term .)
+    $end            reduce using rule 16 (expression -> expression LESSEQUAL term .)
+    ENDIF           reduce using rule 16 (expression -> expression LESSEQUAL term .)
+    ENDDO           reduce using rule 16 (expression -> expression LESSEQUAL term .)
+    RPAREN          reduce using rule 16 (expression -> expression LESSEQUAL term .)
+    COMMA           reduce using rule 16 (expression -> expression LESSEQUAL term .)
+    TIMES           shift and go to state 30
+    DIVIDE          shift and go to state 31
+
+
+state 42
+
+    (17) expression -> expression GREATEREQUAL term .
+    (19) term -> term . TIMES factor
+    (20) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 17 (expression -> expression GREATEREQUAL term .)
+    MINUS           reduce using rule 17 (expression -> expression GREATEREQUAL term .)
+    EQUALS          reduce using rule 17 (expression -> expression GREATEREQUAL term .)
+    NOTEQUALS       reduce using rule 17 (expression -> expression GREATEREQUAL term .)
+    LESS            reduce using rule 17 (expression -> expression GREATEREQUAL term .)
+    GREATER         reduce using rule 17 (expression -> expression GREATEREQUAL term .)
+    LESSEQUAL       reduce using rule 17 (expression -> expression GREATEREQUAL term .)
+    GREATEREQUAL    reduce using rule 17 (expression -> expression GREATEREQUAL term .)
+    ID              reduce using rule 17 (expression -> expression GREATEREQUAL term .)
+    IF              reduce using rule 17 (expression -> expression GREATEREQUAL term .)
+    DO              reduce using rule 17 (expression -> expression GREATEREQUAL term .)
+    $end            reduce using rule 17 (expression -> expression GREATEREQUAL term .)
+    ENDIF           reduce using rule 17 (expression -> expression GREATEREQUAL term .)
+    ENDDO           reduce using rule 17 (expression -> expression GREATEREQUAL term .)
+    RPAREN          reduce using rule 17 (expression -> expression GREATEREQUAL term .)
+    COMMA           reduce using rule 17 (expression -> expression GREATEREQUAL term .)
+    TIMES           shift and go to state 30
+    DIVIDE          shift and go to state 31
+
+
+state 43
+
+    (19) term -> term TIMES factor .
+
+    TIMES           reduce using rule 19 (term -> term TIMES factor .)
+    DIVIDE          reduce using rule 19 (term -> term TIMES factor .)
+    PLUS            reduce using rule 19 (term -> term TIMES factor .)
+    MINUS           reduce using rule 19 (term -> term TIMES factor .)
+    EQUALS          reduce using rule 19 (term -> term TIMES factor .)
+    NOTEQUALS       reduce using rule 19 (term -> term TIMES factor .)
+    LESS            reduce using rule 19 (term -> term TIMES factor .)
+    GREATER         reduce using rule 19 (term -> term TIMES factor .)
+    LESSEQUAL       reduce using rule 19 (term -> term TIMES factor .)
+    GREATEREQUAL    reduce using rule 19 (term -> term TIMES factor .)
+    ID              reduce using rule 19 (term -> term TIMES factor .)
+    IF              reduce using rule 19 (term -> term TIMES factor .)
+    DO              reduce using rule 19 (term -> term TIMES factor .)
+    $end            reduce using rule 19 (term -> term TIMES factor .)
+    ENDIF           reduce using rule 19 (term -> term TIMES factor .)
+    ENDDO           reduce using rule 19 (term -> term TIMES factor .)
+    RPAREN          reduce using rule 19 (term -> term TIMES factor .)
+    COMMA           reduce using rule 19 (term -> term TIMES factor .)
+
+
+state 44
+
+    (20) term -> term DIVIDE factor .
+
+    TIMES           reduce using rule 20 (term -> term DIVIDE factor .)
+    DIVIDE          reduce using rule 20 (term -> term DIVIDE factor .)
+    PLUS            reduce using rule 20 (term -> term DIVIDE factor .)
+    MINUS           reduce using rule 20 (term -> term DIVIDE factor .)
+    EQUALS          reduce using rule 20 (term -> term DIVIDE factor .)
+    NOTEQUALS       reduce using rule 20 (term -> term DIVIDE factor .)
+    LESS            reduce using rule 20 (term -> term DIVIDE factor .)
+    GREATER         reduce using rule 20 (term -> term DIVIDE factor .)
+    LESSEQUAL       reduce using rule 20 (term -> term DIVIDE factor .)
+    GREATEREQUAL    reduce using rule 20 (term -> term DIVIDE factor .)
+    ID              reduce using rule 20 (term -> term DIVIDE factor .)
+    IF              reduce using rule 20 (term -> term DIVIDE factor .)
+    DO              reduce using rule 20 (term -> term DIVIDE factor .)
+    $end            reduce using rule 20 (term -> term DIVIDE factor .)
+    ENDIF           reduce using rule 20 (term -> term DIVIDE factor .)
+    ENDDO           reduce using rule 20 (term -> term DIVIDE factor .)
+    RPAREN          reduce using rule 20 (term -> term DIVIDE factor .)
+    COMMA           reduce using rule 20 (term -> term DIVIDE factor .)
+
+
+state 45
+
+    (24) factor -> LPAREN expression RPAREN .
+
+    TIMES           reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    EQUALS          reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    NOTEQUALS       reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    LESS            reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    GREATER         reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    LESSEQUAL       reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    GREATEREQUAL    reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    ID              reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    IF              reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    DO              reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    $end            reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    ENDIF           reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    ENDDO           reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+
+
+state 46
+
+    (8) if_statement -> IF LPAREN expression RPAREN THEN . statement_list ENDIF
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement statement_list
+    (4) statement -> . assignment
+    (5) statement -> . if_statement
+    (6) statement -> . do_loop
+    (7) assignment -> . ID ASSIGN expression
+    (8) if_statement -> . IF LPAREN expression RPAREN THEN statement_list ENDIF
+    (9) do_loop -> . DO ID ASSIGN expression COMMA expression statement_list ENDDO
+
+    ID              shift and go to state 7
+    IF              shift and go to state 8
+    DO              shift and go to state 9
+
+    statement_list                 shift and go to state 48
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    if_statement                   shift and go to state 5
+    do_loop                        shift and go to state 6
+
+state 47
+
+    (9) do_loop -> DO ID ASSIGN expression COMMA . expression statement_list ENDDO
+    (10) expression -> . expression PLUS term
+    (11) expression -> . expression MINUS term
+    (12) expression -> . expression EQUALS term
+    (13) expression -> . expression NOTEQUALS term
+    (14) expression -> . expression LESS term
+    (15) expression -> . expression GREATER term
+    (16) expression -> . expression LESSEQUAL term
+    (17) expression -> . expression GREATEREQUAL term
+    (18) expression -> . term
+    (19) term -> . term TIMES factor
+    (20) term -> . term DIVIDE factor
+    (21) term -> . factor
+    (22) factor -> . ID
+    (23) factor -> . NUMBER
+    (24) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 14
+    NUMBER          shift and go to state 18
+    LPAREN          shift and go to state 19
+
+    expression                     shift and go to state 49
+    term                           shift and go to state 16
+    factor                         shift and go to state 17
+
+state 48
+
+    (8) if_statement -> IF LPAREN expression RPAREN THEN statement_list . ENDIF
+
+    ENDIF           shift and go to state 50
+
+
+state 49
+
+    (9) do_loop -> DO ID ASSIGN expression COMMA expression . statement_list ENDDO
+    (10) expression -> expression . PLUS term
+    (11) expression -> expression . MINUS term
+    (12) expression -> expression . EQUALS term
+    (13) expression -> expression . NOTEQUALS term
+    (14) expression -> expression . LESS term
+    (15) expression -> expression . GREATER term
+    (16) expression -> expression . LESSEQUAL term
+    (17) expression -> expression . GREATEREQUAL term
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement statement_list
+    (4) statement -> . assignment
+    (5) statement -> . if_statement
+    (6) statement -> . do_loop
+    (7) assignment -> . ID ASSIGN expression
+    (8) if_statement -> . IF LPAREN expression RPAREN THEN statement_list ENDIF
+    (9) do_loop -> . DO ID ASSIGN expression COMMA expression statement_list ENDDO
+
+    PLUS            shift and go to state 22
+    MINUS           shift and go to state 23
+    EQUALS          shift and go to state 24
+    NOTEQUALS       shift and go to state 25
+    LESS            shift and go to state 26
+    GREATER         shift and go to state 27
+    LESSEQUAL       shift and go to state 28
+    GREATEREQUAL    shift and go to state 29
+    ID              shift and go to state 7
+    IF              shift and go to state 8
+    DO              shift and go to state 9
+
+    statement_list                 shift and go to state 51
+    statement                      shift and go to state 3
+    assignment                     shift and go to state 4
+    if_statement                   shift and go to state 5
+    do_loop                        shift and go to state 6
+
+state 50
+
+    (8) if_statement -> IF LPAREN expression RPAREN THEN statement_list ENDIF .
+
+    ID              reduce using rule 8 (if_statement -> IF LPAREN expression RPAREN THEN statement_list ENDIF .)
+    IF              reduce using rule 8 (if_statement -> IF LPAREN expression RPAREN THEN statement_list ENDIF .)
+    DO              reduce using rule 8 (if_statement -> IF LPAREN expression RPAREN THEN statement_list ENDIF .)
+    $end            reduce using rule 8 (if_statement -> IF LPAREN expression RPAREN THEN statement_list ENDIF .)
+    ENDIF           reduce using rule 8 (if_statement -> IF LPAREN expression RPAREN THEN statement_list ENDIF .)
+    ENDDO           reduce using rule 8 (if_statement -> IF LPAREN expression RPAREN THEN statement_list ENDIF .)
+
+
+state 51
+
+    (9) do_loop -> DO ID ASSIGN expression COMMA expression statement_list . ENDDO
+
+    ENDDO           shift and go to state 52
+
+
+state 52
+
+    (9) do_loop -> DO ID ASSIGN expression COMMA expression statement_list ENDDO .
+
+    ID              reduce using rule 9 (do_loop -> DO ID ASSIGN expression COMMA expression statement_list ENDDO .)
+    IF              reduce using rule 9 (do_loop -> DO ID ASSIGN expression COMMA expression statement_list ENDDO .)
+    DO              reduce using rule 9 (do_loop -> DO ID ASSIGN expression COMMA expression statement_list ENDDO .)
+    $end            reduce using rule 9 (do_loop -> DO ID ASSIGN expression COMMA expression statement_list ENDDO .)
+    ENDIF           reduce using rule 9 (do_loop -> DO ID ASSIGN expression COMMA expression statement_list ENDDO .)
+    ENDDO           reduce using rule 9 (do_loop -> DO ID ASSIGN expression COMMA expression statement_list ENDDO .)
+
